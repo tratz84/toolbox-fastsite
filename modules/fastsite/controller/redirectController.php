@@ -59,6 +59,18 @@ class redirectController extends BaseController {
     }
     
     
+    public function action_sort() {
+        $ids = explode(',', get_var('ids'));
+        
+        $redirectService = object_container_get( FastsiteRedirectService::class );
+        $redirectService->updateRedirectSort( $ids );
+        
+        $this->json(array(
+            'success' => true
+        ));
+    }
+    
+    
     public function action_delete() {
         
         $redirectService = object_container_get( FastsiteRedirectService::class );

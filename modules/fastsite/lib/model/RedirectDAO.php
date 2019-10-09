@@ -16,6 +16,12 @@ class RedirectDAO extends \core\db\DAOObject {
 	    return $this->queryOne('select * from fastsite__redirect where redirect_id=?', array($id));
 	}
 	
+	public function readActive() {
+	    $sql = "select * from fastsite__redirect where active=true order by sort";
+	    
+	    return $this->queryList( $sql );
+	}
+	
 	public function delete($id) {
 	    return $this->query('delete from fastsite__redirect where redirect_id=?', array($id));
 	}

@@ -88,6 +88,7 @@ $eb->subscribe('core', 'pre-call-'.FilterChain::class.'::execute', new CallbackP
     $filterChain->addFilter( new \fastsite\filter\FastsiteTemplateFilter() );
     $filterChain->addFilter( new \fastsite\filter\FastsiteMediaFilter() );
     $filterChain->addFilter( new \core\filter\DatabaseFilter() );
+    $filterChain->addFilter( new \fastsite\filter\FastsiteRedirectFilter() );
     $filterChain->addFilter( new \fastsite\filter\FastsiteRouteFilter() );
     $filterChain->addFilter( new DispatchFilter() );
 }));

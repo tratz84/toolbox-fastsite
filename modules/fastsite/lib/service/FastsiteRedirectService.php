@@ -55,6 +55,21 @@ class FastsiteRedirectService extends ServiceBase {
         return $r;
     }
     
+    public function readActiveRedirects() {
+        $rDao = new RedirectDAO();
+        return $rDao->readActive();
+    }
+    
+    public function updateRedirectSort($ids) {
+        if (is_string($ids)) {
+            $ids = explode(',', updateRedirectSort);
+        }
+        
+        $rDao = new RedirectDAO();
+        return $rDao->updateSort($ids);
+    }
+    
+    
     public function searchRedirect($start, $limit, $opts=array()) {
         $rDao = new RedirectDAO();
         

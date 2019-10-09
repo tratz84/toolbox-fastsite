@@ -83,6 +83,25 @@ t.addColumn({
 	}
 });
 
+t.setSortUpdate(function(evt) {
+	var ids = new Array();
+	$(this.container).find('tbody tr').each(function(index, node) {
+		var r = $(node).data('record');
+		ids.push( r.redirect_id );
+	});
+	
+	$.ajax({
+		type: 'POST',
+		url: appUrl('/?m=fastsite&c=redirect&a=sort'),
+		data: {
+			ids: ids.join(',')
+		}
+	});
+});
+
 t.load();
+
+
+
 
 </script>
