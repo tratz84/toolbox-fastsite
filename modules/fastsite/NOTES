@@ -91,6 +91,17 @@ create table fastsite__webform_submit (
     created datetime
 )
 
+create table fastsite__redirect (
+    redirect_id int primary key auto_increment,
+    match_type enum('regexp', 'wildcard', 'exact'),
+    pattern varchar(255),
+    redirect_url varchar(255),
+    active boolean default true,
+    sort int,
+    edited datetime,
+    created datetime
+);
+
 
 
 

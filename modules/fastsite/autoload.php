@@ -56,6 +56,10 @@ $eb->subscribe('base', 'MenuService::listMainMenu', new CallbackPeopleEventListe
     $miWebforms = new Menu();
     $miWebforms->setIconLabelUrl('fa-file-text-o', 'Formulieren', '/?m=fastsite&c=webforms');
     $miFastsite->addChildMenu($miWebforms);
+
+    $miRedirects = new Menu();
+    $miRedirects->setIconLabelUrl('fa-arrows-alt', 'Redirects', '/?m=fastsite&c=redirect');
+    $miFastsite->addChildMenu($miRedirects);
     
     $miTemplates = new Menu();
     $miTemplates->setIconLabelUrl('fa-file-archive-o', 'Templates', '/?m=fastsite&c=template/template');
