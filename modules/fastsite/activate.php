@@ -1,8 +1,9 @@
+<?php
 
-alter table fastsite__webpage add column fastsite_template_file varchar(255) after url;
 
-
-create table fastsite__webmenu (
+$sql = array();
+$sql[] = "
+create table if not exists fastsite__webmenu (
 	webmenu_id int primary key auto_increment,
     parent_webmenu_id int,
     code varchar(64),
@@ -13,9 +14,9 @@ create table fastsite__webmenu (
     sort int,
     edited datetime,
     created datetime
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
-create table fastsite__webpage (
+$sql[] = "create table if not exists fastsite__webpage (
 	webpage_id int primary key auto_increment,
 	webpage_rev_id int,
     code varchar(64),
@@ -26,9 +27,9 @@ create table fastsite__webpage (
     edited datetime,
     created datetime,
     unique(code)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
-create table fastsite__webpage_rev (
+$sql[] = "create table if not exists fastsite__webpage_rev (
 	webpage_rev_id int primary key auto_increment,
 	webpage_id int,
 	rev int,
@@ -38,27 +39,27 @@ create table fastsite__webpage_rev (
     content1 text,
     content2 text,
     created datetime
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
-create table fastsite__webpage_meta (
+$sql[] = "create table if not exists fastsite__webpage_meta (
 	webpage_meta_id int primary key auto_increment,
     webpage_id int,
     meta_key varchar(64),
     meta_value text,
     index index_webpage_id (webpage_id),
     index webpage_id_meta_key (webpage_id, meta_key)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
-create table fastsite__template_setting (
+$sql[] = "create table if not exists fastsite__template_setting (
 	template_setting_id int primary key auto_increment,
     template_name varchar(255),
     active boolean default false,
     edited datetime,
     created datetime,
     unique key key_template_name (template_name)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
-create table fastsite__webform (
+$sql[] = "create table if not exists fastsite__webform (
 	webform_id int primary key auto_increment,
     webform_name varchar(255),
     webform_code varchar(32),
@@ -66,8 +67,10 @@ create table fastsite__webform (
     active boolean default true,
     edited datetime,
     created datetime
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-create table fastsite__webform_field (
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+
+
+$sql[] = "create table if not exists fastsite__webform_field (
 	webform_field_id int primary key auto_increment,
     webform_id int,
     input_field varchar(255),
@@ -76,9 +79,9 @@ create table fastsite__webform_field (
     default_value varchar(255),
     validator varchar(255),
     sort int
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-    
-create table fastsite__webform_submit (
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+
+$sql[] = "create table if not exists fastsite__webform_submit (
 	webform_submit_id int primary key auto_increment,
     webform_id int,
     raw_request text,
@@ -89,9 +92,9 @@ create table fastsite__webform_submit (
     deleted boolean default false,
     completed boolean default true,
     created datetime
-)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
-create table fastsite__redirect (
+$sql[] = "create table if not exists fastsite__redirect (
     redirect_id int primary key auto_increment,
     match_type enum('regexp', 'wildcard', 'exact'),
     pattern varchar(255),
@@ -100,9 +103,7 @@ create table fastsite__redirect (
     sort int,
     edited datetime,
     created datetime
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
 
 
