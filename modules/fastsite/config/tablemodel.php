@@ -29,7 +29,9 @@ $tb_webpage->addColumn('module', 'varchar(64)');
 $tb_webpage->addColumn('active', 'boolean');
 $tb_webpage->addColumn('edited', 'datetime');
 $tb_webpage->addColumn('created', 'datetime');
-$tb_webpage->addIndex('index_code', 'code', ['unique' => true]);
+$tb_webpage->addIndex('index_code', ['code'], ['unique' => true]);
+$tbs[] = $tb_webpage;
+
 
 $tb_web_rev = new TableModel('fastsite', 'webpage_rev');
 $tb_web_rev->addColumn('webpage_rev_id',       'int', ['key' => 'PRIMARY KEY', 'auto_increment' => true]);
@@ -47,7 +49,7 @@ $tb_web_meta->addColumn('webpage_meta_id', 'int', ['key' => 'PRIMARY KEY', 'auto
 $tb_web_meta->addColumn('webpage_id', 'int');
 $tb_web_meta->addColumn('meta_key', 'varchar(64)');
 $tb_web_meta->addColumn('meta_value', 'text');
-$tb_web_meta->addIndex('index_webpage_id', 'webpage_id');
+$tb_web_meta->addIndex('index_webpage_id', ['webpage_id']);
 $tb_web_meta->addIndex('index_webpage_id_meta_key', ['webpage_id', 'meta_key']);
 $tbs[] = $tb_web_meta;
 
@@ -57,7 +59,7 @@ $tb_ts->addColumn('template_name', 'varchar(255)');
 $tb_ts->addColumn('active', 'boolean');
 $tb_ts->addColumn('edited', 'datetime');
 $tb_ts->addColumn('created', 'datetime');
-$tb_ts->addIndex('key_template_name', 'template_name', ['unique' => true]);
+$tb_ts->addIndex('key_template_name', ['template_name'], ['unique' => true]);
 $tbs[] = $tb_ts;
 
 $tb_webform = new TableModel('fastsite', 'webform');

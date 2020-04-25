@@ -21,6 +21,7 @@ if (defined('MODULE_FASTSITE'))
 
 define('MODULE_FASTSITE', 1);
 
+module_update_handler('fastsite', '20200425');
 
 require_once dirname(__FILE__).'/lib/functions/webpage_helper.php';
 require_once dirname(__FILE__).'/lib/functions/template_helper.php';
